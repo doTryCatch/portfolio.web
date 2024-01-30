@@ -26,8 +26,15 @@ code {
 
 }
 
+.home{
+  background:rgb(23, 23, 23);
+}
+.terminal{
+background: url("../src/image/hacker.png");
+background-repeat: no-repeat;
+background-size: cover;
 
-
+}
 li{
   border-radius: 50%;
 
