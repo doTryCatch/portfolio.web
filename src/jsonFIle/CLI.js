@@ -8,17 +8,26 @@ const CLI_MENU = {
 const data = {
   portfolio: {
     about: {
-      info:{"aboutme.txt": {
-        name: "Your Name",
-        age: 25,
-        nationality: "Your Nationality",
-        occupation: "Your Occupation",
-        interests: ["Interest 1", "Interest 2", "Interest 3"],
-      },
-    },
+      info:{"about.txt":""}
+    
 },
-    skills: { "skill.txt": ["Language 1", "Language 2"] },
-    projects: { "project.txt": ["Language 1", "Language 2"] },
+    skills: {"skill.txt":""},
+    projects: {"projects.txt":""},
   },
 };
-module.exports = { CLI_MENU, data };
+
+
+const info={
+  "about.txt": {
+    name: "Your Name",
+    age: 25,
+    nationality: "Your Nationality",
+    occupation: "Your Occupation",
+    interests: ["Interest 1", "Interest 2", "Interest 3"],
+  },
+  "skill.txt": ["Language 1", "Language 2"],
+  "project.txt": ["Language 1", "Language 2"]
+}
+module.exports = { CLI_MENU, data ,info};
+
+

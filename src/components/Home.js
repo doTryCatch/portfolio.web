@@ -6,7 +6,7 @@ import Project from "../image/projects.png";
 import About from "../image/about.png";
 import Hobby from "../image/hobby.png";
 import Hacker from "../image/hacker.png";
-import { CLI_MENU, data } from "../jsonFIle/CLI";
+import { CLI_MENU, data ,info} from "../jsonFIle/CLI";
 
 function Home() {
   const [menu, setMenu] = useState(false);
@@ -14,58 +14,121 @@ function Home() {
   const [index, setIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [command, setCommand] = useState([]);
-  const [current_dir, setDir] = useState("Portfolio");
+  const [current_dir, setDir] = useState(data.portfolio);
+  const [path,setPath]=useState(['portfolio'])
+  const [pathStr,setPathStr]=useState("portfolio")
   const [output, setOutput] = useState([]);
-  const [file, setInfo] = useState("about.txt");
+  const [Info,setInfo]=useState({})
 
-  const find = (dir, Data, all) => {
-    if (Object.keys(Data).length == 0 || all.includes(".txt")) return;
 
-    for (let all in Data) {
-      if (all == dir) {
-        setDir(dir);
-        let arr = [];
-        for (let key in Data[all]) {
-          arr.push(key);
-        }
-      
-       
-        setOutput(arr);
-        return;
-      }
-      if (!all.includes(".txt")) {
-        find(dir, Data[all], all);
-      }
+const readFileInfo=()=>{
+  setInfo(info[command[1]])
+
+
+}
+  
+  const changeDir=()=>{
+    setOutput([])
+    if(current_dir[command[1]] && typeof current_dir[command[1]]==='object'){
+      setDir(current_dir[command[1]])
+      setPath([...path,command[1]])
     }
-  };
+  }
+  // code for keep track of path
+ 
 
+  // to list the element of particular directory
+  const listDir=()=>{
+    let arr=[]
+    for(const all in current_dir){
+      
+      arr.push(all)
+    }
+    setOutput(arr)
+  } 
+const goBackToPreviousDir=()=>{
+  let obj=data
+  if (path.length>1){
+    path.pop()
+  } 
+  let newarr=path
+
+  setPath(newarr)
+
+  let str=""
+  for (const iterator of path) {
+    str+="/"+iterator
+    obj=obj[iterator]
+   }
+  
+   setPathStr(str)
+   setDir(obj)
+  
+
+}
+useEffect(()=>{
+  let str=""
+  for (const iterator of path) {
+    str+="/"+iterator
+   }
+   
+   setPathStr(str)
+
+},[path,pathStr])
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
     setCommand(event.target.value.split(" "));
   };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        switch (command[0]) {
+          case "cd":
+            
 
-  window.addEventListener("keydown", (e) => {
-    // let cmd=command.split(" ")
-    
-    if (e.key == "Enter") {
-      e.preventDefault()
- 
-      switch (command[0]) {
-        case "cd":
-          find(command[1], data, "");
-          break;
-        case "ls":
-        
-          find(current_dir.toLowerCase(), data, "");
-        case "help": for(let all in CLI_MENU.help){
-          setOutput(output.push(all))  
+            if(command[1].includes(".txt")){
+              setOutput(["this is not a directory"])
+            }else{
+              changeDir()
+            }
+            break;
+          case "ls":
+            listDir();  
+            break;
+          case "..":
+            goBackToPreviousDir();
+            break;
+
+          case "nano"||"vim"||"open":
+           
+            if(!command[1].includes(".txt")){
+
+              setOutput([" This is not a file type!!"])
+            }else{
+              
+              readFileInfo()
+              console.log(Info)
+            }
+            break;
+          default:
+            setOutput(["syntax error"]);
         }
-          break;
-        default:setOutput(["syntax error"])
       }
-    }
-  });
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    return () => {
+      // Cleanup event listener when component unmounts
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  
+  }, [command,readFileInfo,changeDir,listDir]);
+  
+
+
 
   // for scroll with in terminal in case of more input appear
   const autoExpand = (element) => {
@@ -164,7 +227,7 @@ function Home() {
 
           <div className="terminal text-green-500  w-[40%]">
             <div className="input bg-transparent">
-              <h1>┌──(one㉿Ra)-[~/{current_dir}]</h1>
+              <h1>┌──(one㉿Ra)-[~/{pathStr}]</h1>
               <h1 className="flex">
                 └─${" "}
                 <textarea
@@ -177,9 +240,16 @@ function Home() {
               </h1>
             </div>
             <div className="output-area bg-transparent rid grid-cols-4 gap-2">
-              {output.map((elem, index) => (
-                <p key={index}>{elem}</p>
-              ))}
+             
+             
+                   { Object.keys(Info).forEach((key, index) => {
+                      return (<div key={index} className="">
+                        <p>{key}:</p>
+                        <p>{Info[key]}</p>
+                      </div>
+                   )})
+                   }
+             
             </div>
           </div>
         </div>
