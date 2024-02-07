@@ -43,6 +43,7 @@ h1,h2,h3{
 }
 .img{
   background-color: rgb(65,65,65);
+
 }
 .buttonDiv,.line{
 
@@ -51,4 +52,8 @@ h1,h2,h3{
 .occupation{
   background-color: rgb(40,40,40);
 
+}
+.navbar{
+
+  background-color: rgba(0, 0, 0, .9);
 }

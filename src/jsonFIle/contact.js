@@ -23,4 +23,16 @@ const Contact_info={
     }
 
 }
-export default Contact_info
+const Doing={
+    "Web Development":{
+        img:Phone,
+        content:"Responsive sites along with some games stuff with in browser",
+        heading:"Web Development"
+    },
+    "Game development":{
+        img:Location,
+        content:"Playing with Pygame and canvasJs for gaming tutorials with some basic types of games like flappy bird, slideable image puzzle, snake game etc. ",
+        heading:"Game development"  
+    }
+}
+export {Contact_info,Doing}

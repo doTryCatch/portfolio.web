@@ -1,33 +1,57 @@
 import React,{useState} from 'react'
-import Contact_info from "./jsonFIle/contact"
+import {Contact_info} from "./jsonFIle/contact"
 import  Hobby from "./image/hobby.png"
 import DropDown from "./image/dropdown.png"
 import Insta from "./image/Insta.png"
 import Github from "./image/Github.png"
 import About from "./components/about"
+import Contact from './components/contact'
+import Portfolio from './components/portfolio'
+import Project from './components/project'
 
 function Page() {
   const [dropdown,setDropDown]=useState(false)
+  const [path,setPath]=useState("About")
+  const navigate=(e)=>{
+setPath( e.currentTarget.getAttribute('value'))
+
+  }
  const handleClick=()=>{
-  dropdown==false?setDropDown(true):setDropDown(false) 
+  dropdown===false?setDropDown(true):setDropDown(false) 
  }
   return (
-    <div className="page center   w-full h-full  ">
-   <div className="container  w-[95%] md:space-x-10  space-y-4">
-    <div className="profile  w-full color my-5 text-white rounded-3xl ">
-        <div className="showContact  flex justify-end">
+    <section className="body">
+
+
+    <div className="navbar bottom-0  w-full bg-gray-500 rounded-tl-xl rounded-tr-xl h-14 fixed center">
+    <ul className='flex space-x-6 text-[15px] text-white'>
+      <li onClick={navigate} value={"About"}>About</li>
+      <li onClick={navigate} value={"Resume"}>Resume</li>
+      <li onClick={navigate} value={"Project"}>Projects</li>
+      <li onClick={navigate} value={"Contact"}>Contact</li>
+    </ul>
+
+  </div>
+    <div className="page center   w-full h-full ">
+    
+   <div className="container md:flex w-[95%] md:space-x-10  space-y-4">
+    <div className="profile  w-full md:w-[30%] color my-5 text-white rounded-3xl ">
+        <div className="showContact  flex justify-end md:hidden">
             <div className="buttonDiv rounded-tr-3xl  rounded-bl-2xl h-8 center w-10 " onClick={handleClick}>
             <p className='text-[16px] text-yellow-300 rotate-90 h-10 w-10 hidden'> {`>`} </p>
             <img src={DropDown} alt="" className='w-6 h-6'/>
             </div>
            
         </div>
-        <div className="profile-container   w-[90%]">
-        <div className="profile-content-area center  -my-5 mb-3 ml-4 h-28">
-        <div className="container   space-x-4 flex">
-        <div className="img rounded-3xl  center  h-[90px] w-[90px]" >
-         <img src={Hobby} alt="" className='w-'/>
+        <div className="profile-containerw-[90%] md:w-full">
+        <div className="profile-content-area center md:block   -my-5 md:my-0 mb-3 ml-4 md:ml-0 md:mb-0 h-28 md:h-[60vh]">
+        <div className="container   space-x-4  md:block flex ">
+          <div className="img-container center  md:w-full   md:h-[40vh]">
+          <div className="img rounded-3xl  center h-[100px] md:w-[130px] md:h-[130px] w-[100px]" >
+         <img src={Hobby} alt="" />
        </div>
+          </div>
+        
        <div className="info center">
         <div className="info-container space-y-3 ">
        <div className="name text-bold text[14px] ">
@@ -47,12 +71,12 @@ function Page() {
         </div>
 
 
-       <div className={dropdown==false?'hidden ':'block '}>
+       <div className={dropdown===false?'hidden md:block':'block '}>
        <div className='center '>
        <hr className='w-[90%] ' />
        </div>
    
-     <div className={dropdown ? 'contact-info center  animate-fadeout' : '  hidden animate-fadeout'}>
+     <div className={dropdown ? 'contact-info center  ' : '  hidden  md:block '}>
     
     
 <div className='container w-[90%] space-y-3 my-5'>
@@ -99,12 +123,17 @@ function Page() {
      </div> 
     </div>
     <section className="body color center rounded-3xl">
-      <div className="container w-[90%] my-4">
-<About/>
+      <div className="container w-[90%] md:[75%] my-4">
+
+{path==="About"&& <About/>}
+{path==="Project"&& <Project/>}
+{path==="Contact" && <Contact/>}
+{path==="Resume"&& <Portfolio/>}
 </div>
     </section>
     </div>
      </div>
+     </section>
   )
 }
 

@@ -11,7 +11,7 @@ const MarkdownReader = ({ filePath }) => {
       try {
         const response = await fetch(filePath);
         const text = await response.text();
-        console.log(text)
+     
         setMarkdownContent(text);
       } catch (error) {
         console.error('Error fetching Markdown file:', error);
