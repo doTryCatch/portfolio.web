@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "//dotrycatch.github.io/portfolio.web/static/css/main.b650bbea.css",
-    "main.js": "//dotrycatch.github.io/portfolio.web/static/js/main.a5caeb67.js",
-    "static/js/787.7da95b79.chunk.js": "//dotrycatch.github.io/portfolio.web/static/js/787.7da95b79.chunk.js",
-    "static/media/hobby.png": "//dotrycatch.github.io/portfolio.web/static/media/hobby.dd419b47b03ce6ecde20.png",
-    "index.html": "//dotrycatch.github.io/portfolio.web/index.html",
-    "main.b650bbea.css.map": "//dotrycatch.github.io/portfolio.web/static/css/main.b650bbea.css.map",
-    "main.a5caeb67.js.map": "//dotrycatch.github.io/portfolio.web/static/js/main.a5caeb67.js.map",
-    "787.7da95b79.chunk.js.map": "//dotrycatch.github.io/portfolio.web/static/js/787.7da95b79.chunk.js.map"
+    "main.css": "/static/css/main.b650bbea.css",
+    "main.js": "/static/js/main.81a78ac9.js",
+    "static/js/787.7da95b79.chunk.js": "/static/js/787.7da95b79.chunk.js",
+    "static/media/hobby.png": "/static/media/hobby.dd419b47b03ce6ecde20.png",
+    "index.html": "/index.html",
+    "main.b650bbea.css.map": "/static/css/main.b650bbea.css.map",
+    "main.81a78ac9.js.map": "/static/js/main.81a78ac9.js.map",
+    "787.7da95b79.chunk.js.map": "/static/js/787.7da95b79.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b650bbea.css",
-    "static/js/main.a5caeb67.js"
+    "static/js/main.81a78ac9.js"
   ]
 }
