@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {Contact_info} from "./jsonFIle/contact"
 import  Hobby from "./image/hobby.png"
 import DropDown from "./image/dropdown.png"
@@ -12,10 +12,16 @@ import Project from './components/project'
 function Page() {
   const [dropdown,setDropDown]=useState(false)
   const [path,setPath]=useState("About")
+  const [scroll,setScroll]=useState(0)
   const navigate=(e)=>{
 setPath( e.currentTarget.getAttribute('value'))
 
+
   }
+  window.addEventListener("scroll",(e)=>{
+    setScroll(window.scrollY)
+  })
+
  const handleClick=()=>{
   dropdown===false?setDropDown(true):setDropDown(false) 
  }
@@ -23,8 +29,8 @@ setPath( e.currentTarget.getAttribute('value'))
     <section className="body">
 
 
-    <div className="navbar bottom-0  w-full bg-gray-500 rounded-tl-xl rounded-tr-xl h-14 fixed center">
-    <ul className='flex space-x-6 text-[15px] text-white'>
+    <div className="navbar bottom-0  w-full  rounded-tl-xl rounded-tr-xl h-14 md:h-16 fixed md:relative center">
+    <ul className='flex space-x-6 md:space-x-10 text-[15px] md:w-[70%] md:h-10 center text-white  md:rounded-xl'>
       <li onClick={navigate} value={"About"}>About</li>
       <li onClick={navigate} value={"Resume"}>Resume</li>
       <li onClick={navigate} value={"Project"}>Projects</li>
@@ -32,10 +38,10 @@ setPath( e.currentTarget.getAttribute('value'))
     </ul>
 
   </div>
-    <div className="page center   w-full h-full ">
+    <div className="page center  md:ml-11">
     
-   <div className="container md:flex w-[95%] md:space-x-10  space-y-4">
-    <div className="profile  w-full md:w-[30%] color my-5 text-white rounded-3xl ">
+   <div className="profile-container md:flex w-[95%] md:space-x-10  space-y-4 ">
+    <div className={"profile  w-full md:w-[44vh] color my-5  text-white rounded-3xl md:h-[105vh] "+ `${scroll<600?"md:sticky md:top-10 scroll-smooth":""}`}>
         <div className="showContact  flex justify-end md:hidden">
             <div className="buttonDiv rounded-tr-3xl  rounded-bl-2xl h-8 center w-10 " onClick={handleClick}>
             <p className='text-[16px] text-yellow-300 rotate-90 h-10 w-10 hidden'> {`>`} </p>
@@ -43,16 +49,17 @@ setPath( e.currentTarget.getAttribute('value'))
             </div>
            
         </div>
-        <div className="profile-containerw-[90%] md:w-full">
-        <div className="profile-content-area center md:block   -my-5 md:my-0 mb-3 ml-4 md:ml-0 md:mb-0 h-28 md:h-[60vh]">
-        <div className="container   space-x-4  md:block flex ">
-          <div className="img-container center  md:w-full   md:h-[40vh]">
+        <div className="profile-containerw-[90%] md:w-full ">
+        <div className="profile-content-area center md:block  mb-3 ml-4 md:ml-0 md:mb-0  h-28 md:h-auto">
+        <div className="container  space-x-4  h-[100%] md:block flex mb-8 overflow-scroll md:my-10">
+
+          <div className="img-container center  md:w-full   md:h-[30vh] ">
           <div className="img rounded-3xl  center h-[100px] md:w-[130px] md:h-[130px] w-[100px]" >
          <img src={Hobby} alt="" />
        </div>
           </div>
         
-       <div className="info center">
+       <div className="info center ">
         <div className="info-container space-y-3 ">
        <div className="name text-bold text[14px] ">
         <h1>Roshan Kumar Patel</h1>
@@ -76,7 +83,7 @@ setPath( e.currentTarget.getAttribute('value'))
        <hr className='w-[90%] ' />
        </div>
    
-     <div className={dropdown ? 'contact-info center  ' : '  hidden  md:block '}>
+     <div className={dropdown ? 'contact-info center  ' : '  hidden md:block md:center'}>
     
     
 <div className='container w-[90%] space-y-3 my-5'>
@@ -122,8 +129,8 @@ setPath( e.currentTarget.getAttribute('value'))
  
      </div> 
     </div>
-    <section className="body color center rounded-3xl">
-      <div className="container w-[90%] md:[75%] my-4">
+    <section className="body-area color center rounded-3xl md:w-[135vh]">
+      <div className="container w-[90%] md:w-[93%] my-4 ">
 
 {path==="About"&& <About/>}
 {path==="Project"&& <Project/>}

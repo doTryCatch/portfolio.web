@@ -6,7 +6,7 @@ import Mobile from "../image/Phone.png"
 function About() {
  
   return (
-   <div className="about font-sans font-medium space-y-4">
+   <div className="about font-sans font-medium space-y-4 ">
     <h1 className='h1 text-[30px]'>About Me</h1>
     <div className="yellow-line h-1 w-10  bg-yellow-500 rounded-3xl">
     </div>
@@ -30,6 +30,7 @@ function About() {
             </div>
             </div>
             </div>
+
 
       ))}
         
