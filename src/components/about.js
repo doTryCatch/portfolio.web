@@ -1,7 +1,7 @@
 import React from 'react'
 import MarkdownReader from '../utils/MarkDownReader';
 import {Doing} from "../jsonFIle/contact"
-import Mobile from "../image/Phone.png"
+// import Mobile from "../image/Phone.png"
 
 function About() {
  
@@ -13,7 +13,7 @@ function About() {
     <div className="contnt text-gray-400 ">
     <MarkdownReader filePath={"/aboutme.md"} />
     </div>
-    <div className="current-status space-y-6">
+    <div className="current-status space-y-6 ">
     <h1 className='h1 text-[25px] '>What i'm Doing</h1>
    
       {Object.values(Doing).map((val,index)=>(

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown'; 
 
 
+
 const MarkdownReader = ({ filePath }) => {
   const [markdownContent, setMarkdownContent] = useState('');
 
@@ -21,9 +22,10 @@ const MarkdownReader = ({ filePath }) => {
     fetchMarkdown();
   }, [filePath]);
 
+
   return (
     <div className="markdown-container space-y-4">
-      <ReactMarkdown>{markdownContent}</ReactMarkdown>
+      <ReactMarkdown >{markdownContent}</ReactMarkdown>
     </div>
   );
 };
